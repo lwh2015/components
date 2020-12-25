@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image.vue render fallback work 1`] = `"<div class=\\"ix-image\\" style=\\"width: 100px; height: 100px;\\"><img class=\\"ix-image-img\\" src=\\"\\" style=\\"width: 100%; height: 100%;\\"><!--v-if--></div>"`;
+
+exports[`Image.vue render preview work 1`] = `"<div class=\\"ix-image\\"><img class=\\"ix-image-img img-preview\\" src=\\"https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg\\" style=\\"width: 100%; height: 100%;\\"><!--v-if--></div>"`;
+
+exports[`Image.vue render width and work 1`] = `"<div class=\\"ix-image\\" style=\\"width: 100px; height: 100px;\\"><img class=\\"ix-image-img\\" src=\\"https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg\\" style=\\"width: 100%; height: 100%;\\"><!--v-if--></div>"`;
+
+exports[`Image.vue render work 1`] = `"<div class=\\"ix-image\\"><img class=\\"ix-image-img\\" style=\\"width: 100%; height: 100%;\\"><!--v-if--></div>"`;

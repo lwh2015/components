@@ -1,18 +1,21 @@
 import { inject, shallowReactive, provide, readonly } from 'vue'
 import type { DeepReadonly } from 'vue'
-import type { ButtonConfig, GlobalConfig, GlobalConfigKey, IconConfig } from './types'
+import type { ButtonConfig, GlobalConfig, GlobalConfigKey, IconConfig, ImageConfig } from './types'
 
 const button: ButtonConfig = shallowReactive({ mode: 'default', size: 'medium' })
 const icon: IconConfig = shallowReactive({})
+const image: ImageConfig = shallowReactive({})
 
 const defaultConfig: GlobalConfig = {
   button,
   icon,
+  image,
 }
 
 const globalConfigToken: Record<GlobalConfigKey, symbol> = {
   button: Symbol(),
   icon: Symbol(),
+  image: Symbol(),
 }
 
 /**

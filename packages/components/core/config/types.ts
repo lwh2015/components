@@ -5,6 +5,7 @@ export type GlobalConfigKey = keyof GlobalConfig
 export interface GlobalConfig {
   button: ButtonConfig
   icon: IconConfig
+  image: ImageConfig
 }
 
 export interface ButtonConfig {
@@ -14,4 +15,10 @@ export interface ButtonConfig {
 
 export interface IconConfig {
   loadIconDynamically?: (iconName: string) => Promise<string>
+}
+
+export interface ImageConfig {
+  width?: string | number
+  height?: string | number
+  fallback?: string
 }
