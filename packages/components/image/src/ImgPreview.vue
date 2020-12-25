@@ -1,7 +1,7 @@
 <template>
-  <div class="ix-img-preview">
-    <div class="ix-img-preview-mask"></div>
-    <div class="ix-img-preview-tools">
+  <div class="ix-image-preview">
+    <div class="ix-image-preview-mask"></div>
+    <div class="ix-image-preview-tools">
       <ul class="preview-tools">
         <li class="tools-item rotate-left" @click="rotateLeft">
           <ix-icon name="rotate-left" />
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <div class="ix-img-preview-img">
+    <div class="ix-image-preview-img">
       <img :src="previewSrc" alt="" :style="{ transform: transform }" />
     </div>
   </div>

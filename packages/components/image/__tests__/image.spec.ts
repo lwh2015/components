@@ -26,7 +26,7 @@ describe('Image.vue', () => {
       props: {
         width: 100,
         height: 100,
-        src: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        src: 'https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg',
       },
     })
     await flushPromises()
@@ -50,26 +50,26 @@ describe('Image.vue', () => {
         preview: true,
         width: 200,
         height: 200,
-        src: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        src: 'https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg',
       },
     })
     await wrapper.find('img').trigger('click')
-    expect(wrapper.find('.ix-img-preview').exists()).toBe(true)
+    expect(wrapper.find('.ix-image-preview').exists()).toBe(true)
     await wrapper.find('.rotate-left').trigger('click')
-    expect(wrapper.find('.ix-img-preview-img>img').attributes()['style']).toEqual(
+    expect(wrapper.find('.ix-image-preview-img>img').attributes()['style']).toEqual(
       'transform: scale3d(1, 1, 1) rotate(-90deg);',
     )
     await wrapper.find('.rotate-right').trigger('click')
 
-    expect(wrapper.find('.ix-img-preview-img>img').attributes()['style']).toEqual(
+    expect(wrapper.find('.ix-image-preview-img>img').attributes()['style']).toEqual(
       'transform: scale3d(1, 1, 1) rotate(0deg);',
     )
     await wrapper.find('.zoom-in').trigger('click')
-    expect(wrapper.find('.ix-img-preview-img>img').attributes()['style']).toEqual(
+    expect(wrapper.find('.ix-image-preview-img>img').attributes()['style']).toEqual(
       'transform: scale3d(1.1, 1.1, 1) rotate(0deg);',
     )
     await wrapper.find('.zoom-out').trigger('click')
-    expect(wrapper.find('.ix-img-preview-img>img').attributes()['style']).toEqual(
+    expect(wrapper.find('.ix-image-preview-img>img').attributes()['style']).toEqual(
       'transform: scale3d(1, 1, 1) rotate(0deg);',
     )
 
@@ -81,6 +81,6 @@ describe('Image.vue', () => {
     expect(wrapper.find('.zoom-out').attributes()['class']).toEqual('tools-item zoom-out tools-item__disabled')
 
     await wrapper.find('.close').trigger('click')
-    expect(wrapper.find('ix-img-preview').exists()).toBe(false)
+    expect(wrapper.find('ix-image-preview').exists()).toBe(false)
   })
 })

@@ -1,9 +1,9 @@
 import type { App } from 'vue'
 import { IxButton, IxButtonGroup } from './button'
 import { IxIcon } from './icon'
-import { IxImage } from './image'
+import { IxImage, IxImagePreview } from './image'
 
-const components = [IxButton, IxButtonGroup, IxIcon, IxImage]
+const components = [IxButton, IxButtonGroup, IxIcon, IxImage, IxImagePreview]
 
 const install = (app: App): void => {
   components.forEach(component => {
