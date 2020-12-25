@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Image.vue render preview work 1`] = `"<img class=\\"ix-image ix-image-img image-preview\\" src=\\"https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg\\" style=\\"width: 200px; height: 200px;\\"><!--v-if-->"`;
+
 exports[`Image.vue render width and work 1`] = `"<img class=\\"ix-image ix-image-img\\" src=\\"https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg\\" style=\\"width: 100px; height: 100px;\\"><!--v-if-->"`;
 
-exports[`Image.vue render work 1`] = `"<img class=\\"ix-image ix-image-img\\"><!--v-if-->"`;
+exports[`Image.vue render work 1`] = `"<img class=\\"ix-image ix-image-img\\" style=\\"width: 100px; height: 100px;\\"><!--v-if-->"`;

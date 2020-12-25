@@ -24,7 +24,7 @@ describe('Image.vue', () => {
   test('render width and work', async () => {
     const wrapper = ImageMount({
       props: {
-        width: 100,
+        width: '100px',
         height: 100,
         src: 'https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg',
       },
@@ -53,7 +53,10 @@ describe('Image.vue', () => {
         src: 'https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg',
       },
     })
-    await wrapper.find('img').trigger('click')
+    await flushPromises()
+    expect(wrapper.html()).toMatchSnapshot()
+    await wrapper.find('.image-preview').trigger('click')
+
     expect(wrapper.find('.ix-image-preview').exists()).toBe(true)
     await wrapper.find('.rotate-left').trigger('click')
     expect(wrapper.find('.ix-image-preview-img>img').attributes()['style']).toEqual(

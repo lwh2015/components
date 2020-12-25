@@ -1,15 +1,24 @@
 <template>
   <img
-    class="ix-image"
-    :class="[isError ? 'ix-image-error' : 'ix-image-img', preview ? 'img-preview' : '']"
+    v-if="imgStatus !== 'error'"
+    :class="['ix-image', 'ix-image-img', preview ? 'image-preview' : '']"
     :src="imgSrc"
     :style="{ width: imgWidth, height: imgHeight, objectFit: fit }"
     :alt="alt"
     v-bind="$attrs"
     @error="onError"
+    @load="onLoad"
     @click="onClick"
   />
-  <template v-if="!isError && preview">
+  <img
+    v-else
+    :class="['ix-image', 'ix-image-error']"
+    :src="imgSrc"
+    :style="{ width: imgWidth, height: imgHeight, objectFit: fit }"
+    :alt="alt"
+    v-bind="$attrs"
+  />
+  <template v-if="imgStatus !== 'error' && preview">
     <img-preview v-if="isShow" :previewSrc="imgSrc" @close="onClose"></img-preview>
   </template>
 </template>
@@ -38,18 +47,21 @@ export default defineComponent({
     const imgSrc = ref(props.src)
     const isShow = ref(false)
     const imageConfig = useGlobalConfig('image')
-    const imgWidth = computedImg(props.width || imageConfig.width)
-    const imgHeight = computedImg(props.height || imageConfig.height)
-    const isError = ref(false)
+    const imgWidth = computedImg(props.width, imageConfig.width)
+    const imgHeight = computedImg(props.height, imageConfig.height)
+    const imgStatus = ref('loading')
 
     function onError() {
-      isError.value = true
+      imgStatus.value = 'error'
       imgSrc.value = props.fallback || imageConfig.fallback
+    }
+
+    function onLoad() {
+      imgStatus.value = 'load'
     }
     function onClick() {
       isShow.value = true
     }
-
     function onClose() {
       isShow.value = false
     }
@@ -57,15 +69,19 @@ export default defineComponent({
       imgWidth,
       imgHeight,
       imgSrc,
-      isError,
+      onLoad,
       onError,
       onClick,
       isShow,
       onClose,
+      imgStatus,
     }
   },
 })
-function computedImg(data: string | number | undefined) {
+function computedImg(data: string | number | undefined, globalData: string | number | undefined) {
+  if (data == null || data === '') {
+    data = globalData
+  }
   return computed(() => {
     if (typeof data === 'number') {
       return data + 'px'

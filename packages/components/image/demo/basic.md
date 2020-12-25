@@ -25,7 +25,7 @@ title:
   <div>
   <h3>基础用法（可通过fit确定图片如何适应到容器框，同原生 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit" target="_blank">object-fit</a>）</h3>
   <div style="display:flex;justify-content: space-around">
-   <ix-image fit="fill" :width="100" :height="100" src="https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg" />
+   <ix-image fit="fill" :width="100" :height="100"  src="https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg" />
    <ix-image fit="contain" src="https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg" style="width:100px;height:100px"/>
     <ix-image fit="contain" src="https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg" style="width:100px;height:100px"/>
      <ix-image fit="cover" src="https://cdn.jsdelivr.net/gh/danranvm/image-hosting/images/idux.jpg" style="width:100px;height:100px"/>
