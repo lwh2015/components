@@ -1,9 +1,11 @@
 import type { App } from 'vue'
 import { IxButton, IxButtonGroup } from './button'
 import { IxIcon } from './icon'
+import { IxBadge } from './badge'
+import { IxDivider } from './divider'
 import { IxImage } from './image'
 
-const components = [IxButton, IxButtonGroup, IxIcon, IxImage]
+const components = [IxButton, IxButtonGroup, IxIcon, IxBadge, IxDivider, IxImage]
 
 const install = (app: App): void => {
   components.forEach(component => {
@@ -24,3 +26,5 @@ export * from './button'
 export * from './i18n'
 export * from './icon'
 export * from './image'
+export * from './badge'
+export * from './divider'
