@@ -13,6 +13,4 @@ export interface ImagePreviewProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ImageComponent extends ImageProps {}
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ImagePreviewComponent extends ImagePreviewProps {}
+export interface IxImageComponent extends ImageProps {}

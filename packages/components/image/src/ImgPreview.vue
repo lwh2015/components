@@ -12,7 +12,7 @@
         <li class="tools-item zoom-in" @click="zoomIn">
           <ix-icon name="zoom-in" />
         </li>
-        <li class="tools-item zoom-out" :class="scale < 0.2 ? 'tools-item__disabled' : ''" @click="zoomOut">
+        <li class="tools-item zoom-out" :class="isZoomOutDisabled ? 'tools-item-disabled' : ''" @click="zoomOut">
           <ix-icon name="zoom-out" />
         </li>
         <li class="tools-item close" @click="close">
@@ -30,6 +30,11 @@
 import { defineComponent, ref, computed } from 'vue'
 import { ImagePreviewProps } from './types'
 import { IxIcon } from '@idux/components/icon'
+const SCALE_MIN = 0.2
+const SCALE_INIT = 1.0
+const SCALE_SETUP = 0.1
+const ROTATE_INIT = 0
+const ROTATE_SETUP = 90
 
 export default defineComponent({
   name: 'IxImgPreview',
@@ -38,25 +43,26 @@ export default defineComponent({
     previewSrc: String,
   },
   setup(props: ImagePreviewProps, context) {
-    let scale = ref(1.0)
-    let rotate = ref(0)
+    let scale = ref(SCALE_INIT)
+    let rotate = ref(ROTATE_INIT)
     let transform = ref('')
-    function close() {
+    const isZoomOutDisabled = computed(() => scale.value < SCALE_MIN)
+    const close = () => {
       context.emit('close')
     }
-    function zoomOut() {
-      if (scale.value > 0.2) {
-        scale.value -= 0.1
+    const zoomOut = () => {
+      if (scale.value > SCALE_MIN) {
+        scale.value -= SCALE_SETUP
       }
     }
-    function zoomIn() {
-      scale.value += 0.1
+    const zoomIn = () => {
+      scale.value += SCALE_SETUP
     }
-    function rotateLeft() {
-      rotate.value -= 90
+    const rotateLeft = () => {
+      rotate.value -= ROTATE_SETUP
     }
-    function rotateRight() {
-      rotate.value += 90
+    const rotateRight = () => {
+      rotate.value += ROTATE_SETUP
     }
     transform = computed(() => `scale3d(${scale.value}, ${scale.value}, 1) rotate(${rotate.value}deg)`)
 
@@ -69,6 +75,7 @@ export default defineComponent({
       rotateLeft,
       rotateRight,
       transform,
+      isZoomOutDisabled,
     }
   },
 })

@@ -1,26 +1,29 @@
 <template>
-  <img
-    v-if="imgStatus !== 'error'"
-    :class="['ix-image', 'ix-image-img', preview ? 'image-preview' : '']"
-    :src="imgSrc"
-    :style="{ width: imgWidth, height: imgHeight, objectFit: fit }"
-    :alt="alt"
-    v-bind="$attrs"
-    @error="onError"
-    @load="onLoad"
-    @click="onClick"
-  />
-  <img
-    v-else
-    :class="['ix-image', 'ix-image-error']"
-    :src="imgSrc"
-    :style="{ width: imgWidth, height: imgHeight, objectFit: fit }"
-    :alt="alt"
-    v-bind="$attrs"
-  />
-  <template v-if="imgStatus !== 'error' && preview">
-    <img-preview v-if="isShow" :previewSrc="imgSrc" @close="onClose"></img-preview>
-  </template>
+  <div class="ix-image">
+    <img
+      v-if="imgStatus !== 'error'"
+      :class="['ix-image-img', preview ? 'image-preview' : '']"
+      :src="src"
+      :style="{ width: imageWidth, height: imageHeight, objectFit: objectFit }"
+      :alt="alt"
+      @error="onError"
+      @load="onLoaded"
+      @click="onClick"
+    />
+    <div
+      v-else-if="imgStatus === 'error'"
+      class="image-error"
+      :style="{
+        width: imageWidth,
+        height: imageHeight,
+        objectFit: objectFit,
+        background: `url(${fallback || imageConfig.fallback})`,
+      }"
+    ></div>
+    <template v-if="imgStatus !== 'error' && preview">
+      <img-preview v-if="isShowPreview" :previewSrc="src" @close="onClose"></img-preview>
+    </template>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
@@ -40,54 +43,51 @@ export default defineComponent({
       type: String,
     },
     alt: String,
-    fit: String,
+    objectFit: {
+      type: String,
+      default: 'fill',
+    },
   },
-  setup(props: ImageProps) {
+  setup(props: ImageProps, context) {
     // init
-    const imgSrc = ref(props.src)
-    const isShow = ref(false)
+    const isShowPreview = ref(false)
     const imageConfig = useGlobalConfig('image')
-    const imgWidth = computedImg(props.width, imageConfig.width)
-    const imgHeight = computedImg(props.height, imageConfig.height)
+    const imageWidth = computedImg(props, imageConfig, 'width')
+    const imageHeight = computedImg(props, imageConfig, 'height')
     const imgStatus = ref('loading')
-
-    function onError() {
+    const onError = () => {
       imgStatus.value = 'error'
-      imgSrc.value = props.fallback || imageConfig.fallback
+      context.emit('error')
     }
-
-    function onLoad() {
-      imgStatus.value = 'load'
+    const onLoaded = () => {
+      imgStatus.value = 'loaded'
+      context.emit('loaded')
     }
-    function onClick() {
-      isShow.value = true
+    const onClick = () => {
+      isShowPreview.value = true
     }
-    function onClose() {
-      isShow.value = false
+    const onClose = () => {
+      isShowPreview.value = false
     }
     return {
-      imgWidth,
-      imgHeight,
-      imgSrc,
-      onLoad,
+      imageWidth,
+      imageHeight,
+      onLoaded,
       onError,
       onClick,
-      isShow,
+      isShowPreview,
       onClose,
       imgStatus,
+      imageConfig,
     }
   },
 })
-function computedImg(data: string | number | undefined, globalData: string | number | undefined) {
-  if (data == null || data === '') {
-    data = globalData
-  }
+const computedImg = (props: ImageProps, imageConfig: ImageProps, type: 'width' | 'height') => {
   return computed(() => {
-    if (typeof data === 'number') {
-      return data + 'px'
-    } else {
-      return data
+    if (props[type] == null) {
+      return typeof imageConfig[type] === 'number' ? `${imageConfig[type]}px` : imageConfig[type]
     }
+    return typeof props[type] === 'number' ? `${props[type]}px` : props[type]
   })
 }
 </script>

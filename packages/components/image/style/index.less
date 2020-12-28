@@ -1,6 +1,6 @@
 @import '../../style/default.less';
 @image-prefix: ~'@{idux-prefix}-image';
-@image-prefix-preview: ~'@{image-prefix}-preview';
+@image-preview-prefix: ~'@{image-prefix}-preview';
     
 @mask-bg: ~'rgba(0, 0, 0, 0.45)';
 @tools-bg: ~'rgba(0, 0, 0, 0.1)';
@@ -16,10 +16,13 @@
   bottom: 0;
   z-index: @zIndex;
 };
-.@{image-prefix}.image-preview {
+.@{image-prefix} {
+  &-img.image-preview {
     cursor: pointer;
-};
-.@{image-prefix-preview} {
+  }
+}
+
+.@{image-preview-prefix} {
   cursor: default;
   user-select: none;
   &-mask {
@@ -48,7 +51,7 @@
         };
        
       };
-      .tools-item__disabled {
+      .tools-item-disabled {
         color: rgba(255, 255, 255, 0.25);
         pointer-events: none;
         cursor:not-allowed;
