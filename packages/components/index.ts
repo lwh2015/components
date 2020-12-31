@@ -27,6 +27,8 @@ import { IxSpin } from './spin'
 // Other
 import { IxBackTop } from './back-top'
 // --- import end ---
+import { IxRadio, IxRadioButton, IxRadioGroup } from './radio'
+
 
 const components = [
   // General
@@ -59,7 +61,13 @@ const components = [
   // Other
   IxBackTop,
   // --- components end ---
+  IxRate,
+  IxRadio,
+  IxRadioButton,
+  IxRadioGroup
 ]
+
+
 
 const directives: Record<string, Directive> = {
   // General
@@ -110,6 +118,9 @@ export {
   IxInput,
   IxTextarea,
   IxRate,
+  IxRadio,
+  IxRadioButton,
+  IxRadioGroup,
   // Data Display
   IxBadge,
   IxCard,

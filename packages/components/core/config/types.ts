@@ -1,4 +1,21 @@
 // General
+import { RadioGroupProps } from '@idux/components/radio/src/types'
+
+export type GlobalConfigKey = keyof GlobalConfig
+
+export interface GlobalConfig {
+  button: ButtonConfig
+  icon: IconConfig
+  badge: BadgeConfig
+  divider: DividerConfig
+  image: ImageConfig
+  spin: SpinConfig
+  space: SpaceConfig
+  result: ResultConfig
+  rate: RateConfig
+  radioGroup: RadioGroupProps
+}
+
 export type ButtonMode = 'primary' | 'default' | 'dashed' | 'text' | 'link'
 export type ButtonSize = 'large' | 'medium' | 'small'
 export interface ButtonConfig {
@@ -140,4 +157,10 @@ export interface GlobalConfig {
   // --- end ---
 }
 
-export type GlobalConfigKey = keyof GlobalConfig
+export type RadioSize = 'large' | 'medium' | 'small'
+export type RadioMode = 'border' | 'fill'
+export interface RadioGroupConfig {
+  size: RadioSize
+  mode: RadioMode
+  color: string
+}
