@@ -7,13 +7,15 @@ title:
 
 ## zh
 
+最简单的用法。
+
 ## en
 
 ## demo
 
 ```html
-<template>
-  <ix-radio v-model:checked="radio" name="demo" value="a" >a</ix-radio>
+<template >
+  <ix-radio v-model:checked="radio" name="demo" value="a">a</ix-radio>
 </template>
 <script>
 import { defineComponent, ref } from 'vue'

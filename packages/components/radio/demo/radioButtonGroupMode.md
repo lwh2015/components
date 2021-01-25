@@ -7,6 +7,8 @@ title:
 
 ## zh
 
+按钮单选组填充模式
+
 ## en
 
 ## demo
@@ -14,17 +16,17 @@ title:
 ```html
 <template>
   <ix-radio-group v-model="radio" @change="onChange" :disabled="disabled" mode="border">
-    <ix-radio-button  value="a" >A</ix-radio-button>
-    <ix-radio-button  value="b" >B</ix-radio-button>
-    <ix-radio-button  value="c" >C</ix-radio-button>
-    <ix-radio-button  value="d" >D</ix-radio-button>
+    <ix-radio-button value="a">A</ix-radio-button>
+    <ix-radio-button value="b">B</ix-radio-button>
+    <ix-radio-button value="c">C</ix-radio-button>
+    <ix-radio-button value="d">D</ix-radio-button>
   </ix-radio-group>
   <div style="height:20px"></div>
    <ix-radio-group v-model="radio" @change="onChange" :disabled="disabled" mode="fill">
-    <ix-radio-button  value="a" >A</ix-radio-button>
-    <ix-radio-button  value="b" >B</ix-radio-button>
-    <ix-radio-button  value="c" >C</ix-radio-button>
-    <ix-radio-button  value="d" >D</ix-radio-button>
+    <ix-radio-button value="a">A</ix-radio-button>
+    <ix-radio-button value="b">B</ix-radio-button>
+    <ix-radio-button value="c">C</ix-radio-button>
+    <ix-radio-button value="d">D</ix-radio-button>
   </ix-radio-group>
 </template>
 <script>

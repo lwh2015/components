@@ -7,6 +7,8 @@ title:
 
 ## zh
 
+`ix-radio-group`配合`ix-radio-button`不可用。
+
 ## en
 
 ## demo
@@ -14,11 +16,13 @@ title:
 ```html
 <template>
   <ix-radio-group v-model="radio" @change="onChange" :disabled="disabled">
-    <ix-radio-button  value="a" >A</ix-radio-button>
-    <ix-radio-button  value="b" >B</ix-radio-button>
-    <ix-radio-button  value="c" >C</ix-radio-button>
-    <ix-radio-button  value="d" >D</ix-radio-button>
+    <ix-radio-button value="a">A</ix-radio-button>
+    <ix-radio-button value="b">B</ix-radio-button>
+    <ix-radio-button value="c">C</ix-radio-button>
+    <ix-radio-button value="d">D</ix-radio-button>
   </ix-radio-group>
+  <div style="height:20px"></div>
+  <ix-button @click="toggle">Toggle disabled</ix-button>
 </template>
 <script>
 import { defineComponent, ref } from 'vue'
@@ -29,10 +33,14 @@ export default defineComponent({
     const onChange = (value)=>{
       console.log(value)
     }
+    const toggle = ()=>{
+      disabled.value = !disabled.value
+    }
   return {
     radio,
     disabled,
-    onChange
+    onChange,
+    toggle
   }
   }
 })

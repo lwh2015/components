@@ -7,14 +7,16 @@ title:
 
 ## zh
 
+`ix-radio` 不可用。
+
 ## en
 
 ## demo
 
 ```html
 <template>
-  <ix-radio v-model:checked="radio"  value="a" :disabled="disabled">a</ix-radio>
-  <ix-radio v-model:checked="radio1"  value="b" :disabled="disabled">b</ix-radio>
+  <ix-radio v-model:checked="radio" value="a" :disabled="disabled">a</ix-radio>
+  <ix-radio v-model:checked="radio1" value="b" :disabled="disabled">b</ix-radio>
   <ix-button @click="toggle">Toggle disabled</ix-button>
 </template>
 <script>
@@ -25,8 +27,7 @@ export default defineComponent({
     const radio1 = ref(true)
     const disabled = ref(true)
     const toggle = ()=>{
-        disabled.value = !disabled.value
-        console.log(disabled.value)
+      disabled.value = !disabled.value
     }
   return {
     radio,

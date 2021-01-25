@@ -14,7 +14,7 @@ export default defineComponent({
   props: {
     modelValue: PropTypes.oneOfType([String, Number, Boolean]),
     size: withUndefined(PropTypes.oneOf(['large', 'medium', 'small'])).def('medium'),
-    mode: withUndefined(PropTypes.oneOf(['fill', 'border'])),
+    mode: withUndefined(PropTypes.oneOf(['fill', 'border'])).def('border'),
     disabled: PropTypes.bool.def(false),
     color: PropTypes.string.def('#00b27a'),
   },
@@ -28,9 +28,6 @@ export default defineComponent({
     const radioGroupSize = computed(() => {
       return props.size
     })
-    // const radioGroupMode = computed(()=>{
-
-    // })
     provide(
       radioGroupKey,
       reactive({

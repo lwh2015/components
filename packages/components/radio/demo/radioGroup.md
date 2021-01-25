@@ -7,6 +7,8 @@ title:
 
 ## zh
 
+一组互斥的 `ix-radio` 配合使用。
+
 ## en
 
 ## demo
@@ -14,10 +16,10 @@ title:
 ```html
 <template>
   <ix-radio-group v-model="radio" @change="onChange" :disabled="disabled">
-    <ix-radio  value="a"  >A</ix-radio>
-    <ix-radio  value="b" >B</ix-radio>
-    <ix-radio  value="c" >C</ix-radio>
-    <ix-radio  value="d" >D</ix-radio>
+    <ix-radio value="a">A</ix-radio>
+    <ix-radio value="b">B</ix-radio>
+    <ix-radio value="c">C</ix-radio>
+    <ix-radio value="d">D</ix-radio>
   </ix-radio-group>
 </template>
 <script>

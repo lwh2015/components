@@ -7,21 +7,22 @@ title:
 
 ## zh
 
+不同尺寸按钮单选组
+
 ## en
 
 ## demo
 
 ```html
 <template>
-  <ix-button v-for="button in buttons" :key="button" @click="toggle(button)">{{button}}</ix-button>
-  <div style="height:20px"></div>
-
   <ix-radio-group v-model="radio" @change="onChange" :size="size" :disabled="disabled">
-    <ix-radio-button  value="a" >A</ix-radio-button>
-    <ix-radio-button  value="b" >B</ix-radio-button>
-    <ix-radio-button  value="c" >C</ix-radio-button>
-    <ix-radio-button  value="d" >D</ix-radio-button>
+    <ix-radio-button value="a">A</ix-radio-button>
+    <ix-radio-button value="b">B</ix-radio-button>
+    <ix-radio-button value="c">C</ix-radio-button>
+    <ix-radio-button value="d">D</ix-radio-button>
   </ix-radio-group>
+  <div style="height:20px"></div>
+  <ix-button v-for="button in buttons" :key="button" @click="toggle(button)">{{button}}</ix-button>
 </template>
 <script>
 import { defineComponent, ref } from 'vue'
@@ -35,9 +36,7 @@ export default defineComponent({
       console.log(value)
     }
     const toggle = (value)=>{
-      console.log(size)
-      size.value=value
-      // console.log(size.value)
+      size.value = value
     }
   return {
     radio,

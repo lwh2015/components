@@ -7,6 +7,8 @@ title:
 
 ## zh
 
+适用于在多个互斥的选项中选择的场景
+
 ## en
 
 ## demo
@@ -14,10 +16,10 @@ title:
 ```html
 <template>
   <ix-radio-group v-model="radio" @change="onChange" :disabled="disabled">
-    <ix-radio-button  value="a" >A</ix-radio-button>
-    <ix-radio-button  value="b" >B</ix-radio-button>
-    <ix-radio-button  value="c" >C</ix-radio-button>
-    <ix-radio-button  value="d" >D</ix-radio-button>
+    <ix-radio-button value="a">A</ix-radio-button>
+    <ix-radio-button value="b">B</ix-radio-button>
+    <ix-radio-button value="c">C</ix-radio-button>
+    <ix-radio-button value="d">D</ix-radio-button>
   </ix-radio-group>
 </template>
 <script>
