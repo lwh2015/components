@@ -1,10 +1,14 @@
 <template>
   <label
-    class="ix-radio"
     :class="{
+      'ix-radio': true,
       'ix-radio-disabled': isDisabled,
       'ix-radio-checked': isChecked,
     }"
+    role="radio"
+    :ariaChecked="isChecked"
+    :ariaDisabled="isDisabled"
+    @change="isChecked = true"
   >
     <span
       class="ix-radio-body"
@@ -18,20 +22,21 @@
         ref="radioRef"
         type="radio"
         :name="name"
+        :checked="isChecked"
+        ariaHidden="true"
         :disabled="isDisabled"
         class="ix-radio-body-input"
-        :checked="isChecked"
         :value="value"
         @change="onChange"
       />
     </span>
-    <span class="ix-radio-label">
-      <slot> </slot>
+    <span class="ix-radio-label" @keydown.stop>
+      <slot></slot>
     </span>
   </label>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { RadioProps, modelValueType } from './types'
 import { PropTypes } from '@idux/cdk/utils'
 import { getRadioAttrs, radioMode } from './radio'
@@ -48,20 +53,30 @@ export default defineComponent({
   setup(props: RadioProps, { emit }) {
     const { isGroup, radioGroup } = radioMode()
     const { isDisabled } = getRadioAttrs(props, isGroup, radioGroup)
-    const isChecked = computed<boolean>(() => {
-      return (isGroup.value ? radioGroup.modelValue === props.value : props.checked) as boolean
+    const radioRef = ref<HTMLInputElement>()
+    const isChecked = computed<boolean>({
+      get() {
+        return (isGroup.value ? radioGroup.modelValue === props.value : props.checked) as boolean
+      },
+      set(value) {
+        if (isGroup.value) {
+          radioGroup.change(props.value as modelValueType)
+        } else {
+          emit('update:checked', value)
+        }
+        radioRef.value!.checked = value
+      },
     })
 
-    const onChange = (e: { target: { checked: boolean } }) => {
-      const isChecked = e.target.checked
+    const onChange = function () {
       emit('change', isChecked)
-      emit('update:checked', isChecked)
-      isGroup.value && radioGroup.change(props.value as modelValueType)
     }
+
     return {
       isDisabled,
       isChecked,
       onChange,
+      radioRef,
     }
   },
 })

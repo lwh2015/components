@@ -10,6 +10,9 @@
     :style="{
       '--radio-button-color': color,
     }"
+    role="radio"
+    :ariaChecked="isChecked"
+    :ariaDisabled="isDisabled"
   >
     <span class="ix-radio-button-body">
       <input
@@ -17,6 +20,7 @@
         type="radio"
         :name="name"
         :disabled="isDisabled"
+        ariaHidden="true"
         class="ix-radio-button-body-input"
         :value="value"
         :checked="isChecked"
@@ -32,6 +36,7 @@ import { defineComponent, computed } from 'vue'
 import { RadioButtonProps, modelValueType } from './types'
 import { getRadioAttrs, radioMode } from './radio'
 import { PropTypes } from '@idux/cdk/utils'
+import { useGlobalConfig } from '@idux/components/core/config'
 
 export default defineComponent({
   name: 'IxRadioButton',
@@ -54,14 +59,16 @@ export default defineComponent({
       emit('update:checked', isChecked)
       isGroup.value && radioGroup.change(props.value as modelValueType)
     }
+    const radioGroupConfig = useGlobalConfig('radioGroup')
+
     const size = computed(() => {
-      return isGroup.value ? radioGroup.size : 'medium'
+      return isGroup.value ? radioGroup.size : radioGroupConfig.size
     })
     const mode = computed(() => {
-      return isGroup.value ? radioGroup.mode : 'border'
+      return isGroup.value ? radioGroup.mode : radioGroupConfig.mode
     })
     const color = computed(() => {
-      return isGroup.value ? radioGroup.color : '#00B27A'
+      return isGroup.value ? radioGroup.color : radioGroupConfig.color
     })
 
     return {

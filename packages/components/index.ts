@@ -29,7 +29,6 @@ import { IxBackTop } from './back-top'
 // --- import end ---
 import { IxRadio, IxRadioButton, IxRadioGroup } from './radio'
 
-
 const components = [
   // General
   IxButton,
@@ -64,10 +63,8 @@ const components = [
   IxRate,
   IxRadio,
   IxRadioButton,
-  IxRadioGroup
+  IxRadioGroup,
 ]
-
-
 
 const directives: Record<string, Directive> = {
   // General

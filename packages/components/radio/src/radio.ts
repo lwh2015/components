@@ -1,7 +1,6 @@
 import { computed, ComputedRef, inject } from 'vue'
 import { RadioProps, RadioGroupConfig, radioModeConfig } from './types'
 import type { InjectionKey } from 'vue'
-
 export const getRadioAttrs = (
   props: RadioProps,
   isGroup: ComputedRef<boolean>,
